@@ -1,0 +1,230 @@
+\documentclass[spanish,12pt]{article}
+
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{enumerate}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{indentfirst}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{tikz-feynman}
+\usepackage{physics}
+\usepackage{color}
+\renewcommand{\baselinestretch}{1.5}
+\setlength{\parskip}{0.4cm}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\thesection}{1em}{}[{\titlerule[0.8pt]}]
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={IB Cálculo},
+}
+\fancyhead[l]{\fontsize{8}{12}\slshape\MakeUppercase{IB Cálculo}}
+\fancyhead[R]{\slshape{S.Morales y J. Pulido}}
+\fancyfoot[c]{\thepage}
+\pgfplotsset{compat=1.17}
+\begin{document}
+	\begin{titlepage}
+	\begin{center}
+	\hspace{0pt}
+	\vfill
+	{\Large\textbf{{IB Cálculo}}}
+	
+	\medskip
+	Clase 5: Aplicación de Derivadas
+	
+	\medskip
+    Samuel Morales y Julio Pulido
+	
+	\thispagestyle{empty}
+	\vfill
+	\end{center}
+	\end{titlepage}
+\newpage
+\tableofcontents
+\newpage
+\begin{itemize}
+    \item Interpretación
+    \item Recta Tangente
+    \item Recta Normal
+\end{itemize}
+\section{Interpretación de la derivada}
+
+La derivada de $f(x)$ se entiende como la pendiente inmediata evaluada en un punto $x$. Si por ejemplo la derivada es un valor constante, quiere decir que la pendiente es constante. Si depende también de $x$, entonces la pendiente va a ir cambiando.
+
+\section{Rectas tangente y normal}
+\subsection{Recta tangente}
+La tangente a un punto $x_1,y_1$ de una función $f(x)$ corresponde a la recta (lineal) que pasa por dicho punto y cuya pendiente corresponde a la pendiente de la función en ese punto.
+
+Recordemos que la pendiente ($m$) está dada por
+
+$$m=\frac{y_2-y_1}{x_2-x_1}$$
+
+Entonces, utilizando la definición de derivada que conocemos, $m=f'(x_1)$ y asumiendo $y_2=y \land x_2=x$
+\begin{align*}
+    f'(x_1)&=\frac{y-y_1}{x-x_1}\\
+    y&=f'(x_1)x-f'(x_1)x_1+y_1
+\end{align*}
+
+\begin{align*}
+    t:=y(x)&=mx+n\\
+    y(x)&=\underbrace{f'(x_1)}_{m}x+\underbrace{f(x_1)-x_1f'(x_1)}_{n}\\
+\end{align*}
+
+Se aclara que la intercepción $(n)$ se obtiene de el hecho de que la recta tangente pasa por el punto $(x_1,y_1)$, entonces:
+
+\begin{align*}
+    f(x_1)&=y(x_1)\\
+    f(x_1)&=f'(x_1)x_1+n\\
+    n&=f(x_1)-f'(x_1)x_1
+\end{align*}
+
+\hfill $\square$
+
+\subsection{Recta Normal}
+
+La normal a un punto $x_1,y_1$ de una función $f(x)$ corresponde a la recta (lineal) perpendicular a la tangente, y que pasa por dicho punto.
+
+Recordemos que 
+
+\begin{align*}
+    m_1 \perp m_2 \iff m_1m_2=-1
+\end{align*}
+
+Entonces, si la recta tangente es de pendiente $m$, la recta normal tendrá que tener pendiente $-1\over m$. Reemplazando en la ecuación de la recta. 
+$$n(x)=\frac{-1}{f'(x_1)}x+f(x_1)+x_1\frac{1}{f'(x_1)}$$
+
+
+\subsection{Ejercicios}
+\begin{enumerate}[1)]
+    \item Encuentre la recta tangente a las siguientes funciones para x=1:
+\begin{align*}
+    f(x)&=2x^2-x+1\tag{I\footnotemark}\\
+    f(x)&=\ln(x)\tag{I}\\
+\end{align*}
+\footnotetext{{Nuevo sistema de dificultad. I puede aparecer en la prueba como ejercicio sencillo. II puede aparecer en la prueba como ejercicio complejo. III no aparecerá en la prueba}}
+    \item  Encuentre los puntos de la curva $y=\frac{1}{2-x}$ donde la pendiente es 1, y deduzca las rectas tangentes y normales en estos puntos (II).
+    \item Generalice la función de las rectas tangentes a la función $\sin(x)$ para todos los puntos donde la pendiente sea $k$ (III).
+    \item Para las siguientes funciones, encuentre las coordinadas de los puntos donde la recta tangente sea paralela al eje $x$:
+\begin{align*}
+    f(x)&=2x^3+3\tag{I}\\
+    f(x)&=\ln{x}-x\tag{II}
+\end{align*}
+\end{enumerate}
+\section{Optimización}
+\subsection{Optimización e interpretación de la derivada}
+
+Sabemos que la derivada representa la pendiente en un punto de una función, por lo tanto si en un punto la derivada es 0 nos encontramos ante un máximo o un mínimo (local o global). (ver gráfico) o un punto de inflexión.
+
+El concepto de optimización apunta a la maximización o minimización de una función y tiene grandes utilidades prácticas. (Por ejemplo, minimizar costos o maximizar ganancias).
+
+Para distinguir un máximo de un mínimo, podemos comprobar con valores cercanos al punto examinado. Por ejemplo:
+
+\textit{Ejemplo.} ¿Dónde se maximiza $f(x)=-x^2+x$?
+
+Debemos buscar el punto donde la derivada es 0, entonces:
+
+\begin{align*}
+    0&=f'(x)\\
+    0&=-2x+1\\
+    x&=\frac{1}{2}
+\end{align*}
+
+Para comprobar que este es un máximo, podemos considerar valores cercanos a $x=\frac{1}{2}$, por ejemplo, 1 y 0.
+
+\begin{align*}
+    f(0)&=0\\
+    f\left(\frac{1}{2}\right)&=\frac{1}{4}\\
+    f(1)=0
+\end{align*}
+
+Como los valores cercanos a $f(1/2)$ son menores que este, dicho punto será un máximo.
+
+\subsection{Segunda derivada y puntos de inflexión}
+La segunda derivada (denotada como $f''(x)\text{ o }\ f^{(2)}(x)$) corresponde a la derivada de la derivada de la función $f(x)$.
+$$f''(x)=\frac{d}{dx}f'(x)$$
+
+La mayor importancia de la segunda derivada radica en su interpretación. Se pueden extraer dos cosas:
+
+(I) Como vimos anteriormente, cuando la derivada de una función es 0, ocurrirá un mínimo, un máximo o un punto de inflexión. 
+
+\begin{itemize}
+    \item Si $f'(x_1)=0 \;\land\; f''(x_1)<0$ en $x_1$ ocurre un máximo. 
+    \item Si $f'(x_1)=0 \;\land\; f''(x_1)>0$ en $x_1$ ocurre un mínimo. 
+    \item Si $f'(x_1)=0 \;\land\; f''(x_1)=0$ en $x_1$ ocurre un cambio de concavidad y un punto de inflexión. 
+\end{itemize}
+
+(II) Independiente del valor de $f'(x)$, cuando $f''(x)=0$ ocurre un punto de inflexión y un cambio de concavidad.
+
+\begin{itemize}
+    \item Si $f''(x)<0$ la función es cóncava hacia abajo
+    \item Si $f''(x)>0$ la función es cóncava hacia arriba
+\end{itemize}
+\newpage
+\subsection{Ejercicios}
+\begin{enumerate}[1)]
+    \item  Para las siguientes funciones encuentre (I)
+    \begin{itemize}
+    \item Puntos de inflexión
+    \item Intervalos donde es cóncava hacia arriba
+    \item intervalos donde es cóncava hacia abajo
+    \end{itemize}
+    \begin{enumerate}
+        \item $f(x)=x^3-x$
+        \item $f(x)=x^4-3x+2$
+        \item $f(x)=x^4+x^3+x^2+x+1$ 
+    \end{enumerate}
+    \item Realice ejercicios 1,2,3,4,5,7,9,12 en las páginas 281-282 del libro (II).
+    \item Realice ejercicios 1,2,3,4 en las páginas 283-284 del libro (II).
+    \item Realice ejercicios 1,3,4,7 en la página 287 del libro (II).
+    \item Un rectángulo se compone de lados $a$ y $b$ y suma un perímetro fíjo $P$. Encuentre la relación entre $a$ y $b$ (relación dada por $\frac{a}{b}$) tal que se maximice el área del rectángulo.  (III)
+\end{enumerate}
+\newpage
+Ejercicio de sección B Paper 1 (16 puntos en una prueba de 120):
+
+A continuación se muestra el gráfico de la función 
+$$f(x)=\frac{x+1}{x^2+1}$$
+
+\begin{figure}[h!]
+		\begin{center}
+	\begin{tikzpicture}
+    \begin{axis}[
+	ytick = {1},
+    axis lines=center,]
+    \addplot[
+    samples=500,
+    domain=-5:6,
+    color=blue,
+    ]
+    {(x+1)/(x^2+1)};
+    \end{axis}
+\end{tikzpicture}
+	        \caption{Gráfico de $\frac{x+1}{x^2+1}$}
+	    \end{center}
+	\end{figure}
+   \begin{enumerate}[(a)]
+       \item Halle $f'(x)$
+       \item A partir de lo anterior, halle las coordenadas $x$ de los puntos en los que la pendiente del
+gráfico de $f$ es igual a cero.
+        \item Halle $f''(x)$, expresando la respuesta de forma $\frac{p(x)}{(x^2+1)^3}$, donde $p(x)$ es un polinomio de grado 3.
+
+El punto (1,1) es un punto de inflexión. Hay otros dos puntos de inflexión.
+        \item Halle las coordenadas $x$ de los otros dos puntos de inflexión.
+
+   \end{enumerate} 
+\end{document}

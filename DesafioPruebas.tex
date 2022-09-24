@@ -1,0 +1,137 @@
+\documentclass[spanish,12pt]{article}
+
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{enumerate}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{indentfirst}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{tikz-feynman}
+\usepackage{physics}
+\usepackage{color}
+\renewcommand{\baselinestretch}{1.5}
+
+\newcommand{\dydx}{\frac{dy}{dx}}
+\newcommand{\ddx}{\frac{dy}{dx}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{R}}
+\newcommand*\Eval[3]{\left.#1\right\rvert_{#2}^{#3}}
+
+\setlength{\parskip}{0.4cm}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\thesection}{1em}{}[{\titlerule[0.8pt]}]
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Solucionario P3},
+}
+\fancyhead[l]{\fontsize{8}{12}\slshape\MakeUppercase{Solucionario ejercicio P3}}
+\fancyhead[R]{\slshape{S.Morales y J. Pulido}}
+\fancyfoot[c]{\thepage}
+\pgfplotsset{compat=1.17}
+\begin{document}
+	\begin{titlepage}
+	\begin{center}
+	\hspace{0pt}
+	\vfill
+	{\Large\textbf{{Desafío}}}
+	
+	\thispagestyle{empty}
+	\vfill
+	\end{center}
+	\end{titlepage}
+\newpage
+\section{Desafío}
+
+El teorema fundamental del álgebra establece que una ecuación degrado $n$ tiene exactamente $n$ raíces (complejas). Notese que el grupo de complejos engloba a los números reales, por lo tanto una ecuación con coeficientes reales de grado $n$ tiene también $n$ soluciones en los números complejos.
+
+En este desafío, deberá probar que todo polinomio con coeficientes reales puede ser expresado en función de factores lineales y cuadráticos. En otras palabras, cualquier ecuación de grado 3 o superior se puede factorizar en términos de menor grado.
+
+Para comenzar,  pruebe las siguientes identidades en los números complejos:
+
+Sea $z$ un numero complejo y $\Bar{z}$ su conjugado:
+\begin{align*}
+    \Bar{z} \cdot \Bar{x} &= \overline{z\cdot x}\\
+    \overline{z}+\overline{x}&=\overline{z+x}
+\end{align*}
+
+Ahora, considere la ecuación
+\begin{align*}
+    f(x)=a_1x^n+a_2x^{n-1}+\dots+a_{n-1}x+a_n
+\end{align*}
+
+Con $\{a_n\}_{n \in \mathbb{N}}\in \mathbb{R}$
+
+Cuantas soluciones tiene la ecuación $f(x)=0$?
+
+A partir de esto, escriba la factorizacion, en los números complejos, de $f(x)$ (Puede expresar los coeficientes como $k_n$).
+
+Pruebe que $\overline{f(x)}=f(\overline{x})$
+
+A partir de esto, explique porque todo polinomio de coeficientes reales se puede factorizar en una combinación de términos lineales y cuadráticos.
+\newpage
+\section{Solución}
+
+La prueba de las identidades es trivial y no se explicara.
+
+Que $f(x)=0$ significa que el valor de $x$ valoriza a la función compleja $f$ en $0$, es decir las raíces de la ecuación. Por lo tanto, según el teorema fundamental del álgebra $f(x)$ tendrá $n$ raíces.
+
+Entonces, $f(x)$ se puede factorizar como:
+\begin{align*}
+    f(x)=(x-k_1)(x-k_2)\cdots(x-k_n)
+\end{align*}
+
+Utilizando las identidades probadas al comienzo de esta seccion
+
+\begin{align*}
+    \overline{f(x)}&=\overline{a_1x^n+a_2x^{n-1}+\dots+a_{n-1}x+a_n}\\
+    \overline{f(x)}&= \overline{a_1x^n}+\overline{a_2x^{n-1}}+\cdots+\overline{a_{n-1}x}+\overline{a_n}
+\end{align*}
+
+Evaluando solo un termino, debido a que es suficiente
+\begin{align*}
+    \overline{a_1x^n}&=\overline{a_1}\overline{x^n}\\
+    \overline{a_1}\overline{x^n}&=a_1\overline{x}^n\\
+    \overline{f(x)}&=f(\overline{x})
+\end{align*}
+\hfill $\square$
+
+Ahora, si $k_s \in \mathbb{R}$, entonces tenemos un termino lineal en nuestra factorizacion, si $k_s$ es un complejo con su parte imaginaria distinta de cero, sabemos que su conjugado tambien sera un factor, por lo tanto 2 factores de $f(x)$ serán 
+
+\begin{align*}
+    (x-k_s)(x-\overline{k_s})=(x^2-x(k_s+\overline{k_s})+k_s\overline{k_s})
+\end{align*}
+
+Dado que $k_S=a+bi$ con $a,b \in \mathbb{R}$
+
+\begin{align*}
+    k_s+\overline{k_s}&=2a\\
+    k_s\overline{k_S}&=(a+bi)(a-bi)=(a^2+b^2)
+\end{align*}
+
+Entonces
+
+\begin{align*}
+     (x-k_s)(x-\overline{k_s})= (x^2-2ax+a^2+b^2)
+\end{align*}
+
+Es una expresión cuadrática con coeficientes reales
+
+\hfill $\square$
+\end{document}

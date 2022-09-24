@@ -1,0 +1,142 @@
+\documentclass[spanish,12pt]{article}
+
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{enumerate}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{indentfirst}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{tikz-feynman}
+\usepackage{physics}
+\usepackage{color}
+\renewcommand{\baselinestretch}{1.5}
+\newcommand{\dydx}{\frac{dy}{dx}}
+\newcommand{\R}{\mathbb{R}}
+\setlength{\parskip}{0.4cm}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\thesection}{1em}{}[{\titlerule[0.8pt]}]
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={IB Cálculo},
+}
+\fancyhead[l]{\fontsize{8}{12}\slshape\MakeUppercase{IB Cálculo}}
+\fancyhead[R]{\slshape{S.Morales y J. Pulido}}
+\fancyfoot[c]{\thepage}
+\pgfplotsset{compat=1.17}
+\begin{document}
+	\begin{titlepage}
+	\begin{center}
+	\hspace{0pt}
+	\vfill
+	{\Large\textbf{{IB Cálculo}}}
+	
+	\medskip
+	Clase 8: Integrales Definidas
+	
+	\medskip
+    Samuel Morales y Julio Pulido
+	
+	\thispagestyle{empty}
+	\vfill
+	\end{center}
+	\end{titlepage}
+\newpage
+\tableofcontents
+\newpage
+\section{Integración Definida}
+\subsection{Teorema Fundamental del Cálculo}
+
+$$\int^b_af(x)dx=F(b)-F(a)\iff F'(x)=f(x)$$
+
+Para la prueba del teorema, les recomendamos ver el video.
+
+\subsection{Propiedades de las integrales de definidas}
+
+\begin{align*}
+    \int^b_af(x)dx&=-\int^a_bf(x)dx\\
+    \int^a_af(x)dx&=0\\
+    \int^b_af(x)dx+\int^c_bf(x)dx&=\int^c_af(x)dx \quad \text{Para }a\leq b \leq c
+\end{align*}
+
+\subsection{Interpretación de la integral definida}
+
+La integral de $a$ a $b$ de una función corresponde al área comprendida entre el eje $x$ y la función, entre los límites $a$ y $b$. En otras palabras, el área debajo de la curva. 
+
+Cuando $f(x)$ tiene algún valor negativo en el intervalo $[a,b]$, el área entre la curva y el eje $x$ será:
+
+$$\int^b_a|f(x)|dx$$
+
+\textit{Ejemplo.}
+Encuentre el área entre el eje $x$ y la curva para $f(x)=x^3-3x^2-x+3$ entre -2 y 4.
+\begin{figure}[h!]
+		\begin{center}
+	\begin{tikzpicture}
+\begin{axis}
+[axis lines=center,]
+\addplot[samples=100,domain=-2:4,color=blue,]{x*x*x-x*x-x*x-x*x-x+3};
+\end{axis}
+\end{tikzpicture}
+	\caption{Gráfico de $f(x)=x^3-3x^2-x+3$}
+	\end{center}
+	\end{figure}
+Primero averiguamos si segmentos de la función con valores negativos, y luego dividir la función en segmentos. 
+
+Para esto, encontramos primero los ceros de la función.
+\begin{align*}
+   f(x)=x^3-3x^2-x+3&=0\\
+   (x+1)(x-1)(x-3)&=0\\
+   x=-1,1,3
+\end{align*}
+Con estos tres puntos, y los limites inferiores y superiores (-2 y 4 respectivamente), se pueden establecer 4 intervalos.
+
+\begin{align*}
+    Área&=\int^{4}_{-2}|f(x)|dx\\
+    Área&=\abs{\int^{-1}_{-2}f(x)dx}+\abs{\int^{1}_{-1}f(x)dx}+\abs{\int^{3}_{1}f(x)dx}+\abs{\int^{4}_{3}f(x)dx}\\
+    Área&=\abs{F(-1)-F({-2})}+\abs{F(1)-F(-1)}+\abs{F(3)-F(1)}+\abs{F(4)-F(3)}
+\end{align*}
+Encontramos la primitiva
+\begin{align*}
+    F(x)&=\int f(x)dx\\
+    F(x)&=\int x^3-3x^2-x+3dx\\
+    F(x)&=\frac{x^4}{4}-x^3-\frac{x^2}{2}+3x
+\end{align*}
+
+Sabiendo esto, el resto de el trabajo es tedioso pero trivial; meramente algebráico.
+\section{Ejercicios}
+\begin{enumerate}[1)]
+    \item Resuelva las siguientes integrales definidas
+    \begin{enumerate}
+        \item $\int^5_0 x^2dx$ (I)
+        \item $\int^{\ln{k}}_{0} e^xdx$ (II)
+        \item $\int^{\frac{\pi}{2}}_{0} \sin{x}dx$ (I)
+        \item $\int^{0}_{-1} 5(1-2x)^2$ (II)
+    \end{enumerate}
+    \item Determine el área entre
+    \begin{enumerate}
+        \item $x=0;\;x=6;\;y=0;\;y=x$ (I)
+        \item $x=-2\pi;\;x=2\pi;\;y=0;\;y=\sin{x}$ (I)
+        \item $y=x^2-4;\;y=3x$ (II)
+        \item $x=-2\pi;\;x=2\pi;\;y=\sin{x};\;y=\cos{x}$ (II)
+        \item $y=x+4;\;y=4-x;\;y=\frac{x^2}{4}-4$ (III)
+        \item $x=0;\;x=k\pi;\;y=\sin{x}+1$ (III)
+    
+    \end{enumerate}
+\end{enumerate}
+\end{document}

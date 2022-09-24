@@ -1,0 +1,119 @@
+\documentclass[spanish,12pt]{article}
+
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{enumerate}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{indentfirst}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{tikz-feynman}
+\usepackage{physics}
+\usepackage{color}
+\renewcommand{\baselinestretch}{1.5}
+
+\newcommand{\dydx}{\frac{dy}{dx}}
+\newcommand{\ddx}{\frac{dy}{dx}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{R}}
+\newcommand*\Eval[3]{\left.#1\right\rvert_{#2}^{#3}}
+
+\setlength{\parskip}{0.4cm}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\thesection}{1em}{}[{\titlerule[0.8pt]}]
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={IB Cálculo},
+}
+\fancyhead[l]{\fontsize{8}{12}\slshape\MakeUppercase{IB Cálculo}}
+\fancyhead[R]{\slshape{S.Morales y J. Pulido}}
+\fancyfoot[c]{\thepage}
+\pgfplotsset{compat=1.17}
+\begin{document}
+	\begin{titlepage}
+	\begin{center}
+	\hspace{0pt}
+	\vfill
+	{\Large\textbf{{IB Cálculo}}}
+	
+	\medskip
+	Clase n: Título
+	
+	\medskip
+    Samuel Morales y Julio Pulido
+	
+	\thispagestyle{empty}
+	\vfill
+	\end{center}
+	\end{titlepage}
+\newpage
+\tableofcontents
+\newpage
+\section{}
+\subsection{}
+\section{Ejercicios}
+\begin{enumerate}[$a)$]
+    \item Aceptar explicación o derivación, no respuesta sola.
+    \begin{enumerate}[i)]
+        \item $n=2$
+        \item $n=3$
+        \item $n=5$
+    \end{enumerate}
+    \item Aceptar explicación o derivación, no respuesta sola. $n=p+q$
+    \item Aceptar solo respuesta. Penalizar un punto si no se encuentra simplificada al número de términos indicado.
+    \begin{enumerate}[i)]
+        \item $fg'+f'g$
+        \item $fg''+2f'g'+f''g$
+        \item $fg'''+3f'g''+3f''g'+f'''g$
+    \end{enumerate}
+    \item Aceptar solo respuesta.
+    \begin{enumerate}[i)]
+        \item $a+b$
+        \item $a^2+2ab+b^2$
+        \item $a^3+3a^2b+3ab^2+b^3$
+    \end{enumerate}
+    \item Aceptar cualquier demostración válida y otorgar hasta 3 puntos por proceso. 
+    
+    \item Aceptar cualquier demostración válida por inducción y otorgar hasta 5 puntos por proceso.
+    \begin{align*}
+        P(1): && (a+b)^1=&a+b
+        &P(1)\text{ es verdadero}\tag{1}\\
+        P(m): && (a+b)^m=&\sum_{k=0}^m{m\choose{k}}a^kb^{m-k} && &P(m)\text{ se asume verdadero}\tag{1}\\
+        P(m+1): && (a+b)^{m+1}=&(a+b)^{m}(a+b)\tag{1}\\
+        && (a+b)^{m+1}=&\left[\sum_{k=0}^m{m\choose{k}}a^kb^{m-k}\right](a+b)\tag{1}
+    \end{align*}
+
+\begin{multline}
+        =\biggl[{m\choose{0}}a^m+{m\choose{1}}a^{m-1}b...+{m\choose{r-1}}a^{m+1-r}b^{r-1}\\
+        +{m\choose{r}}a^{m-r}b^{r}...+{m\choose{m-1}}ab^{m-1}+{m\choose{m}}b^{m}\biggl](a+b)\notag
+\end{multline}
+\begin{multline}
+        =a^{m+1} + \underbrace{ {m\choose{0}}a^mb+{m\choose{1}}a^{m}b}_{\left[{m\choose{0}}+{m\choose{1}}\right]a^mb}+...\\\underbrace{{m\choose{r-1}}a^{m+1-r}b^{r}+{m\choose{r}}a^{m+1-r}b^{r}}_{\left[{m\choose{r-1}}+{m\choose{r}}\right]a^{m+1-r}b^r}+...\\\underbrace{{m\choose{m-1}}ab^{m}+{m\choose{m}}ab^{m}}_{\left[{m\choose{m-1}}+{m\choose{m}}\right]ab^m}+b^{m+1}\notag
+\end{multline}
+\begin{align*}
+    &=a^{m+1}+\left[{m\choose{0}}+{m\choose{1}}\right]a^mb+...\left[{m\choose{r-1}}+{m\choose{r}}\right]a^{m+1-r}b^r+...\left[{m\choose{m-1}}+{m\choose{m}}\right]ab^m+b^{m+1}\\
+    &=a^{m+1}+{m+1\choose{1}}a^mb+\dots{m+1\choose{r}}a^{m+1-r}b^r+\dots{m+1\choose{m}}ab^m+b^{m+1}\\
+    &=(a+b)^{m}=\sum_{k=0}^{m+1}{m+1\choose{k}}a^{m+1-k}b^{k}
+\end{align*}
+
+    \item Otorgar 1 punto por hipótesis errónea y 2 por hipótesis correcta.
+    $$(fg)^{(n)}=\sum_{k=0}^n{n\choose{k}}f^{(k)}g^{(n-k)}$$
+    \item Aceptar cualquier demostración válida y otorgar hasta 4 puntos por proceso.
+\end{enumerate}
+\end{document}

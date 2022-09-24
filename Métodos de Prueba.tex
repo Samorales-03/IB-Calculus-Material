@@ -1,0 +1,98 @@
+\documentclass[spanish,12pt]{article}
+
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{enumerate}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{indentfirst}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{tikz-feynman}
+\usepackage{physics}
+\usepackage{color}
+\renewcommand{\baselinestretch}{1.5}
+
+\newcommand{\dydx}{\frac{dy}{dx}}
+\newcommand{\ddx}{\frac{dy}{dx}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand*\Eval[3]{\left.#1\right\rvert_{#2}^{#3}}
+
+\setlength{\parskip}{0.4cm}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\thesection}{1em}{}[{\titlerule[0.8pt]}]
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Solucionario P3},
+}
+\fancyhead[l]{\fontsize{8}{12}\slshape\MakeUppercase{Métodos de prueba}}
+\fancyhead[R]{\slshape{J. Pulido}}
+\fancyfoot[c]{\thepage}
+\pgfplotsset{compat=1.17}
+\begin{document}
+	\begin{titlepage}
+	\begin{center}
+	\hspace{0pt}
+	\vfill
+	Álgebra – I
+	\medskip
+	
+	{\Large\textbf{{Clase 1: Métodos de prueba}}}
+	
+	\medskip
+	Julio Pulido
+	\thispagestyle{empty}
+	\vfill
+	\end{center}
+	\end{titlepage}
+\newpage
+\section{Prueba matemática}
+Una prueba consiste de una serie de pasos lógicos que validan un postulado.
+\subsection{Prueba directa}
+Consiste en probar un postulado a través de pasos algebraicos y/u otros postulados verdaderos.
+\textbf{Pasos:}
+\begin{enumerate}
+    \item Identificar el postulado
+    \item Convertirlo a lenguaje matemático si es que no lo está
+    \item Usar álgebra o teoremas para deducir la validez del postulado
+\end{enumerate}
+\newpage
+\subsection{Contraejemplo}
+No es un tipo de prueba. Es una forma de determinar que un postulado es falso. Consiste en dar un ejemplo donde no se cumpla el postulado dado.
+\subsection{Prueba por contradicción}
+\textbf{Pasos:}
+\begin{enumerate}
+    \item Identificar el postulado
+    \item Convertirlo a lenguaje matemático si es que no lo está
+    \item Asumir lo contrario al postulado
+    \item Usar álgebra o teoremas para demostrar que el postulado contrario es falso
+    \item Queda probado que el postulado original es correcto
+\end{enumerate}
+\newpage
+\subsection{Prueba por Inducción}
+\textbf{Pasos:}
+\begin{enumerate}
+    \item Identificar el postulado
+    \item Convertirlo a lenguaje matemático si es que no lo está y expresarlo en función de una variable ($n$)
+    \item $P(n=1)$: Demostrar que se cumple el postulado para $n$=1
+    \item $P(n=k)$: Asumir que se cumple el postulado para un natural arbitrario $n$=$k$ $\forall k\in\N$
+    \item Paso inductivo $P(n=k+1)$:Usar el supuesto $P(n=k)$ para demostrar que el postulado se cumple también para $n=k+1$
+    \item Queda probado que el postulado original es valido para cualquier $n\in\N$
+\end{enumerate}
+\end{document}

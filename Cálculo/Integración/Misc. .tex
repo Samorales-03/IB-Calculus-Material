@@ -1,0 +1,232 @@
+\documentclass[spanish,12pt]{article}
+
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{enumerate}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{indentfirst}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{tikz-feynman}
+\usepackage{physics}
+\usepackage{color}
+\renewcommand{\baselinestretch}{1.5}
+
+\newcommand{\dydx}{\frac{dy}{dx}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand*\Eval[3]{\left.#1\right\rvert_{#2}^{#3}}
+
+\setlength{\parskip}{0.4cm}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\thesection}{1em}{}[{\titlerule[0.8pt]}]
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={IB Cálculo},
+}
+\fancyhead[l]{\fontsize{8}{12}\slshape\MakeUppercase{IB Cálculo}}
+\fancyhead[R]{\slshape{S.Morales y J. Pulido}}
+\fancyfoot[c]{\thepage}
+\pgfplotsset{compat=1.17}
+\begin{document}
+	\begin{titlepage}
+	\begin{center}
+	\hspace{0pt}
+	\vfill
+	{\Large\textbf{{IB Cálculo}}}
+	
+	\medskip
+	Clase 12: ¡Más integrales! (y otras cosas)
+	
+	\medskip
+    Samuel Morales y Julio Pulido
+	
+	\thispagestyle{empty}
+	\vfill
+	\end{center}
+	\end{titlepage}
+\newpage
+\tableofcontents
+\newpage
+\section{Solidos de revolución}
+\subsection{Volumen}
+    
+    Con las herramientas ya conocidas, derivaremos algunas aplicaciones practicas, por ejemplo el volumen de un cilindro. Si se rota el gráfico de $f(x)=1$ en torno al eje $x$, se obtiene una especie de cilindro, entonces la integral representa su volumen.
+    
+    Entonces, imaginamos que cada altura (rectangulo de suma de Riemman), se transformara en un circulo de radio $r=1$, entonces la suma de todos estos pequeños círculos sería la integral:
+    
+    \begin{align*}
+        V&=\int_0^a\pi\cdot r^2dx\\
+        V&=\int_0^a\pi\cdot 1^2dx\\
+        V&=\pi\int_0^adx\\
+        V&=\pi a\footnotemark
+    \end{align*}
+    \footnotetext{Notese que seria lo mismo si lo calculamos con formula}
+    \hfill $\square$
+    
+    De manera general, el sólido de revolución generado por la función $f(x)$ desde $x=a$ hasta $x=b$ en relación al eje $x$ es:
+    
+    $$V=\pi\int_a^b [f(x)]^2dx$$
+    
+    Intente derivar la formula para un cono ($f(x)=-ax+b$).
+    
+    De la misma forma, el volumen de un sólido de revolución de una función respecto al eje $y$ entre $y=c$ y $y=d$ se representa como:
+    
+     $$V=\pi\int_c^d [x]^2dy$$
+    
+    
+    El volumen de la revolución del área entre dos funciones se puede calcular como la diferencia positiva entre los volúmenes de revolución de ambas funciones:
+    
+    $$V=\pi\int_a^b \big|[f(x)]^2-[g(x)]^2\big|dx$$
+\subsection{Área}
+    El área de un solido de revolución\footnote{Esto no entra, pero nunca está de más.} utiliza la misma lógica que la sección anterior, pero utiliza la formula del perímetro de un circulo, no de su área. Entonces la ecuación seria:
+    
+    Para una función $f(x)$ definida entre $a$ y $b$, el área formada por el solido de revolución seria:
+    
+    $$I=\int_b^a 2\pi f(x)dx\footnotemark$$
+    
+    \footnotetext{Esta expresión no cuenta las tapas, que necesitaríamos usar el área, no el perímetro.}
+\section{Áreas entre gráficos}
+Esto ya lo vieron $>$:(
+
+De manera general 
+$$A=\int_a^b|f(x)-g(x)\big|\quad\quad\quad\text{Donde }a\text{ y }b\text{ son los puntos de intersección.}$$
+Vuelvan a la clase 8 y hagan los ejercicios $>$:(
+
+\section{Cinemática}
+
+También lo hemos visto integrado con ejercicios en los otros contenidos, pero de de manera general:
+\begin{align*}
+    \text{Desplazamiento}&=\int_{t_1}^{t_2}v(x)dx\\
+    \text{Recorrido}&=\int_{t_1}^{t_2}|v(x)|dx
+\end{align*}
+
+\section{Polinomios de Maclaurin}
+El tema que ahora nos concierne es aproximación de funciones mediante polinomios. En otras palabras, el objetivo es aprender a crear una función polinómica que se asemeje en un intervalo a la función original. Una serie polinómica tendrá la siguiente forma:
+
+$$P(x)=a_0+a_1x+a_2x^2+a_3x^3...=\sum_{k=0}^{\infty}a_kx^k$$
+
+Cuando se aproxima una función con un polinomio, se escoge un punto al rededor del cual se debe asemejar. De manera general, aproximar una una función con un polinomio al rededor de un punto $x=k$ resulta en series de Taylor. Para los requerimientos del IB solo deberemos estudiar aproximaciones alrededor de 0. Los polinomios resultantes de esta aproximación se denominan Polinomios de Maclaurin.
+
+Tomemos un ejemplo.
+
+\textit{Aproxime alrededor de 0 la función }$f(x)=\ln{(x+1)}$ 
+
+Determinemos a la función polinómica $P(x)$ como la aproximación que realizaremos.
+
+¿Cómo podemos aproximar una función al rededor de 0 con un polinomio? Un primer paso, sería asegurarse que en tal punto $P(x)=f(x)$ (que ambas funciones pasen por el mismo punto). 
+
+\begin{align*}
+    P(0)&=f(0)\\
+    a_0&=\ln(1)\\
+    a_0&=0
+\end{align*}
+
+Con esto, sabemos que el primer término de nuestro polinomio es 0. Luego sería conveniente que $P(x)$ tuviera una tendencia similar a $f(x)$ en el punto 0. Esto se puede hacer igualando sus derivadas. Por el momento, 
+
+\begin{align*}
+    P'(0)&=f'(0)\\
+    0+a_1+2a_2x+3a_3x^2+...&=\frac{1}{1+x}\\
+    a_1&=1
+\end{align*}
+
+Así que los dos primeros términos de del polinomio son: $P(x)=0+x$ o simplemente $P(x)=x$.
+
+Para seguir aproximando la función, queremos que la tendencia de la tendencia en 0 sea igual, en otras palabras, igualar sus segundas derivadas en 0.
+
+\begin{align*}
+    P''(0)&=f''(0)\\
+    0+0+2a_2+2\cdot3a_3x+...&=-\frac{1}{(1+x)}\\
+    2a_2&=-1\\
+    a_2&=\frac{-1}{2}
+\end{align*}
+
+Con esto, el polinomio se extiende a: $P(x)=x-\frac{x^2}{2}$
+
+El procedimiento se empieza a hacerse aparente: encontrar los términos $a_k$ igualando $P^{(k)}(x)=f^{(k)}(x)$. 
+
+Generalizando, se puede llegar a lo siguiente:
+
+\begin{align*}
+    a_0=f(0),&& a_1=\frac{f'(0)}{2},&& a_2=\frac{f''(0)}{2\cdot3},&& ... a_k=\frac{f^{(k)}(0)}{k!}
+\end{align*}
+
+Esto aplica para la aproximación de cualquier función continua en $x=0$.
+
+Aplicando esto a nuestro ejemplo, podemos desarrollar los primeros 5 términos (incluyendo $a_0=0$) de $P(x)$.
+
+$$P(x)=x-\frac{x^2}{2}+\frac{x^3}{3}-\frac{x^4}{4}$$
+%%SAMUEL SAMUEEEEEEEL, PON UNA GRAFICA PARA P(X) Y F(X)
+Para nuestro caso la serie infinita se puede generalizar como:
+
+$$\sum_{k=1}^{\infty}(-1)^{k-1}\frac{x^k}{k}$$
+
+Este ejemplo ilustra el proceso para establecer un polinomio de Maclaurin. Se podrá establecer lo siguiente:
+\begin{itemize}
+    \item A mayor número de términos se calculen, mejor será la aproximación.
+    \item La aproximación será adecuada solo para $x\in]-1,1[$.
+\end{itemize}
+Resumiendo,
+
+$$P(x)=\sum_{k=0}^{\infty}\frac{f^{(k)}(0)}{k!}x^k\approx f(x)\quad\quad\quad\text{Para } x\in]-1,1[$$
+
+\section{Ejercicios}
+\subsection{Solidos de revolución}
+Realice los ejercicios de la sección 8C del libro de Oxford (páginas 527 y 528).
+\begin{enumerate}[1)]
+    \item Demuestre las fórmulas para los volumenes de las siguientes figuras. (Tip: pregúntese, ¿La rotación de qué función generará la figura cuyo volumen busco?) (II)
+    \begin{enumerate}
+        \item Cilindro ($A=\pi r^2h$)
+        \item Cono ($A=\frac{1}{3}\pi r^2h$)
+        \item Esfera ($A=\frac{4}{3}\pi r^3$) (Tip: Encontrará la formula de una circunferencia en la guía de derivación implícita.)
+    \end{enumerate}
+    \item Dada una función $f(x)$, encuentre el volumen de la rotación de $f(x)$ en torno a una recta cualquiera de la forma $y=mx+n$. (II)
+\end{enumerate}
+\subsection{Área entre gráficos}
+Ejercicios clase 8.
+Encontrará más ejercicios en el libro de Oxford, secciones 8A y 8B (páginas 522 y 523).
+\subsection{Cinemática}
+Ha sido ejercitado de manera integrada a otros temas.
+Encontrará más ejercicios dedicados específicamente al tema en el libro de Oxford, sección 8D (página 532).
+\subsection{Polinomios de Maclaurin}
+\begin{enumerate}[1)]
+    \item Para las siguientes funciones desarrolle el polinomio de Maclaurin hasta el 5º término ($x^4$).
+    \begin{enumerate}
+        \item $e^x$ (I)
+        \item $\sin{x}$ (I)
+        \item $\cos{x}$ (I)
+        \item $\arctan x$ (I)
+    \end{enumerate}
+    \item Generalice hasta el infinito los polinomios de la sección anterior. (II)
+    \item Desarrolle los siguientes polinomios hasta el 4º término ($x^3$)
+    \begin{enumerate}
+        \item $\tan x$ (I)
+        \item $xe^{x}$ (II) (tip: utilice su resultado de 1.a)
+        \item $x\cos{2x}$ (II) (tip: utilice su resultado de 1.c)
+        \item $\frac{x^3}{1+x^2}$ (II)
+    \end{enumerate}
+    \item Realice la expansión hasta el 5º término de $f(x)=(a+x)^p$, donde $p$ es una constante. Luego generalícela.
+    \item El teorema del binomio establece que:
+    $$(a+x)^n=\sum_{k=0}^{n}{n\choose k}a^{n-k}x^{k}\quad\quad\quad\forall\; n\in\mathbb{N}$$
+    Utilizando lo anterior (4), pruebe el teorema del binomio. (III)
+    \item La expansión del teorema del binomio para exponentes racionales establece que:
+    $$(1+x)^\alpha=\sum_{k=0}^{\infty}\frac{\alpha(\alpha-1)(\aplha-2)\cdot\cdot\cdot(\alpha-k+1)}{k!}x^{k}\quad\quad\quad\forall\; k\in\mathbb{Q}\;\wedge\;x\in]-1,1[$$
+    Pruébela a partir de la serie de maclaurin para $f(x)=(1+x)^p$, y explique por qué se aplica la restricción al intervalo de $x$ (II).
+    \item De manera general, ¿Por qué se aplica la restricción $x\in]-1,1[$ a los polinomios de Maclaurin?
+\end{enumerate}
+\end{document}

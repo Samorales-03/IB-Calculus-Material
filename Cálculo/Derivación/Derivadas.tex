@@ -1,0 +1,148 @@
+\documentclass[spanish,12pt]{article}
+
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{indentfirst}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{tikz-feynman}
+\usepackage{physics}
+\usepackage{color}
+\renewcommand{\baselinestretch}{1.5}
+\setlength{\parskip}{0.4cm}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\thesection}{1em}{}[{\titlerule[0.8pt]}]
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={IB Cálculo},
+}
+\fancyhead[l]{\fontsize{8}{12}\slshape\MakeUppercase{IB Cálculo}}
+\fancyhead[R]{\slshape{S.Morales y J. Pulido}}
+\fancyfoot[c]{\thepage}
+\pgfplotsset{compat=1.17}
+\begin{document}
+	\begin{titlepage}
+	\begin{center}
+	\hspace{0pt}
+	\vfill
+	{\Large\textbf{{IB Cálculo}}}
+	
+	\medskip
+	Clase 2: Derivadas (Principios)
+	
+	\medskip
+    Samuel Morales y Julio Pulido
+	
+	\thispagestyle{empty}
+	\vfill
+	\end{center}
+	\end{titlepage}
+\newpage
+\tableofcontents
+\newpage
+\section{Temas}
+\begin{itemize}
+    \item Concepto de pendiente (entre valores discretos)
+    \item Derivación por principio (Límite) 
+\end{itemize}
+\section{Pendiente de una curva}
+\subsection{Derivando la ecuación de una pendiente}
+\begin{figure}[h]
+		\begin{center}
+	\begin{tikzpicture}
+		\begin{axis}[
+			xlabel={$x$},
+			ylabel={$f(x)$},
+			xmin=0, xmax=3,
+			ymin=0, ymax=5,
+			xtick = {0,1,2,3},
+			legend pos=north west,
+			ymajorgrids=true,
+			axis lines=left,
+			scaled y ticks=false,
+			]
+			
+			\addplot[
+			color=red,
+			samples=300,
+			]
+		{x^2};
+		    \addplot[color=blue,]{3*(x)-2};
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Gráfico de $x^2$ y la pendiente entre 1 y 2}
+	\end{center}
+	\end{figure}
+	
+	\begin{align*}
+	m&=\frac{f(2)-f(1)}{2-1}\\
+	m&=\frac{4-1}{1}\\
+	m&=3.
+	\end{align*}
+
+De manera mas general, la pendiente dentro dos puntos $x_2$ y $x_2$ es 
+\begin{align*}
+    m&=\frac{f(x_2)-f(x_1)}{x_2-x_1}\\
+    m&=\frac{f(x_2)-f(x_1)}{\Delta x}.
+\end{align*}
+	\subsection{Derivación por Principio}
+	\begin{align*}
+	    f'(x)&=\lim_{h\to0}{\frac{f(x+h)-f(x)}{x+h-x}}\\
+	    f'(x)&=\lim_{h\to0}{\frac{f(x+h)-f(x)}{h}}\\
+	\end{align*}
+
+\section{Ejemplos}
+  \textit{Ejemplo.}  Si $f(x)=x$, calcule $f'(x)$
+    \begin{align*}
+        f'(x)&=\lim_{h\to0}\frac{f(x+h)-f(x)}{h}\\
+        f'(x)&=\lim_{h\to0}\frac{x+h-x}{h}\\
+        f'(x)&=\lim_{h\to0}\frac{h}{h}\\
+        f'(x)&=\lim_{h\to0}1=1.
+    \end{align*}
+    \hfill $\square$
+    
+    \textit{Ejemplo.} $f(x)=x^2$
+    \begin{align*}
+	    f'(x)&=\lim_{h\to0}\frac{(x+h)^2-x^2}{h}\\
+	    f'(x)&=\lim_{h\to0}{\frac{2hx+h^2}{h}}\\
+	    f'(x)&=\lim_{h\to0}{2x+h}\\
+	    f'(x)&=2x
+	\end{align*}
+\section{Ejercicios}
+Para todo $f(x)$, encuentre, desde los principios, $f'(x)$
+\begin{align*}
+    f(x)&=x^3+x^2+x+1\\
+    f(x)&=x^2-2\\
+    f(x)&=x^2-5\\
+    f(x)&=x^2+4\\
+    f(x)&=x^2+n\\
+    f(x)&=ax \quad \quad a\in \mathbb{R}\\
+    f(x)&=\sqrt{x}\\
+    f(x)&=\frac{1}{x}\\
+    f(x)&=a
+\end{align*}
+\textit{Desafío}. Conociendo que un móvil de mueve siguiendo la siguiente ecuación:
+$$x(t)=x_0+v_0t+\frac{1}{2}at^2$$
+
+En donde $x(t)$ es la posición en un tiempo $t$, $x_0$ la posición inicial, $v_0$ la velocidad inicial y $a$ la aceleración.
+
+Calcule la aceleración del objeto utilizando la derivación desde principios
+
+\end{document}

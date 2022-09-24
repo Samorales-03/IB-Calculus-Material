@@ -1,0 +1,124 @@
+\documentclass[spanish,12pt]{article}
+
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{enumerate}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{indentfirst}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{tikz-feynman}
+\usepackage{physics}
+\usepackage{color}
+\renewcommand{\baselinestretch}{1.5}
+\newcommand{\dydx}{\frac{dy}{dx}}
+\newcommand{\R}{\mathbb{R}}
+\setlength{\parskip}{0.4cm}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\thesection}{1em}{}[{\titlerule[0.8pt]}]
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={IB Cálculo},
+}
+\fancyhead[l]{\fontsize{8}{12}\slshape\MakeUppercase{IB Cálculo}}
+\fancyhead[R]{\slshape{S.Morales y J. Pulido}}
+\fancyfoot[c]{\thepage}
+\pgfplotsset{compat=1.17}
+\begin{document}
+	\begin{titlepage}
+	\begin{center}
+	\hspace{0pt}
+	\vfill
+	{\Large\textbf{{IB Cálculo}}}
+	
+	\medskip
+	Clase 7: Integrales Indefinidas
+	
+	\medskip
+    Samuel Morales y Julio Pulido
+	
+	\thispagestyle{empty}
+	\vfill
+	\end{center}
+	\end{titlepage}
+\newpage
+\tableofcontents
+\newpage
+\section{Definición de integral indefinida}
+
+La integral indefinida, tambien conocida como anti-derivada se define de la siguiente manera.
+
+\textit{Definicion}. Sea $f(x)$ una funcion. Llamamos a la integral de $f(x)$ la antiderivada de $f(x)$, en otras palabras.
+
+\begin{align*}
+    &f:=\R \rightarrow \R\\
+    &\int f(x) dx = F(x) \iff F'(x)=f(x)
+\end{align*}
+
+\textit{Ejemplos.}
+\begin{enumerate}[(1)]
+    \item Sea $f(x)=1$, halle $\int f(x) dx$
+    
+        Recordando que si $f(x)=x$, $f'(x)=1$. $F(x)=x+C$
+        
+\hfill $\square$
+
+\item Sea $f(x)=\cos(x),$ halle $\int f(x)dx$
+\item Resuelva $\int \frac{1}{x}+e^x dx$
+\end{enumerate}
+
+\section{Propiedades de integración}
+
+(Comentar tabla de integrales directas en formulario)
+Cosas a considerar:
+\begin{align*}
+    \int x^ndx &= \frac{x^{n+1}}{n+1}+C\\
+    \int kf(x)dx &= k\int f(x)dx \qquad \text{Para } k\in\R\\
+    \int f(x) + g(x)dx &= \int f(x)dx + \int g(x)dx\\
+    \int f(x)g(x)dx &\neq \int f(x)dx\int g(x)dx
+\end{align*}
+
+\section{Ejercicios}
+\begin{enumerate}[1)]
+    \item Encuentre las sioguientes integrales
+    \begin{enumerate}
+        \item $\int x^2dx$ (I)
+        \item $\int e^xdx$ (I)
+        \item $\int a^xdx$ (III)
+        \item $\int \sin{x}dx$ (I)
+        \item $\int \cos{\theta}d\theta$ (I)
+        \item $\int \sec^2{x}dx$ (I)
+        \item $\int \frac{1}{x}dx$ (I)
+        \item $\int x^{-n}dx$ (II)
+        \item $\int 2x^2 + \sin{x} + 3 dx$ (I)
+        \item $\int e^xdx$ (I)
+        \item $\int e^{\sin{x}}dk$ (I)
+    \end{enumerate}
+    \item Determine la ecuación itinerario para un móvil de acuerdo a la aceleración (Pista: La derivada de la ecuación itinerario es la ecuación de velocidad y la derivada de la ecuación velocidad es la aceleración).
+    \begin{enumerate}
+        \item aceleración$=a$ (II)
+        \item aceleración$=\sin(t)$ (III)
+    \end{enumerate}
+    \item Se define $f_n(g(x))$ como la enésima integral de $g(x)$. Determine $f_1(x), f_2(x), f_3(x), f_4(x), f_5(x)$, $f_{4n}(x), f_{4n+1}(x), f_{4n+2}(x)$ y $f_{4n+3}(x)$ para:
+        \begin{enumerate}
+            \item $g(x)=e^x$ (II)
+            \item $g(x)=\sin{x}$ (III)
+        \end{enumerate}
+\end{enumerate}
+\end{document}

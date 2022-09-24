@@ -1,0 +1,308 @@
+\documentclass[spanish,12pt]{article}
+
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{enumerate}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{indentfirst}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{tikz-feynman}
+\usepackage{physics}
+\usepackage{color}
+\renewcommand{\baselinestretch}{1.5}
+
+\newcommand{\dydx}{\frac{dy}{dx}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand*\Eval[3]{\left.#1\right\rvert_{#2}^{#3}}
+
+\setlength{\parskip}{0.4cm}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\thesection}{1em}{}[{\titlerule[0.8pt]}]
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={IB Cálculo},
+}
+\fancyhead[l]{\fontsize{8}{12}\slshape\MakeUppercase{IB Cálculo}}
+\fancyhead[R]{\slshape{S.Morales y J. Pulido}}
+\fancyfoot[c]{\thepage}
+\pgfplotsset{compat=1.17}
+\begin{document}
+	\begin{titlepage}
+	\begin{center}
+	\hspace{0pt}
+	\vfill
+	{\Large\textbf{{IB Cálculo}}}
+	
+	\medskip
+	Clase 13: Ecuaciones Diferenciales Ordinarias (EDO's)
+	
+	\medskip
+    Samuel Morales y Julio Pulido
+	
+	\thispagestyle{empty}
+	\vfill
+	\end{center}
+	\end{titlepage}
+\newpage
+\tableofcontents
+\newpage
+\section{Ecuaciones Diferenciales Ordinarias}
+\subsection{Definición}
+Una ecuación diferencial es aquella que relaciona la taza de cambio como variable de la ecuación. 
+
+Por ejemplo: \textit{La tasa de crecimiento de una población es directamente proporcional a la población actual ($P$)}.
+
+La tasa de crecimiento es la variación del tamaño poblacional en el tiempo($\frac{dP}{dt}$). Este enunciado puede ser expresado a través de una ecuación diferencial, tal que:
+$$\frac{dP}{dt}=kP$$
+
+Se entiende que una inmensidad fenómenos prácticos pueden ser modelados con ecuaciones diferenciales, por lo que son extremadamente útiles.
+
+En el ejemplo que acabamos de ilustrar, la ecuación planteada es una ecuación diferencial de \textbf{primer orden} porque solo está presente la primera derivada de la población. El orden de una ecuación diferencial se determina según la mayor derivada que tenga. 
+
+Para observar esto, reescribamos la Segunda Ley de Newton:
+\begin{align}
+    F=&ma\\
+    F=&m\frac{dv}{dt}\\
+    F=&m\frac{d^2x}{dt^2}
+\end{align}
+
+En (1) tenemos simplemente una ecuación, pero si sustituimos la aceleración por la derivada de la velocidad (2) nos queda una ecuación diferencial de primer orden. Si a la vez sustituimos la derivada de la velocidad por la segunda derivada de la posición (3), obtendremos una ecuación diferencial del segundo orden.
+
+\subsection{Resolución de ecuaciones diferenciales}
+
+La resolución de una ecuación nos entrega un valor ($3x+5=x-3\quad\therefore\;x=-4$). Pero la resolución de una ecuación diferencial nos entrega una función.
+
+\textit{Ejemplo}. 1
+\begin{align*}
+    \dydx=&y\tag{eq.1}\\
+    \therefore\;y=&Ae^x
+\end{align*}
+
+La resolución de una ecuación diferencial resulta generalmente en términos de alguna constante (en este caso demarcada como $A$). Si conocemos alguna \textbf{condición inicial} puede ser posible dar una solución absoluta.
+
+Por ejemplo, si aparte de tener la ecuación planteada (eq.1) supiéramos que $y(1)=e^3$ se puede dar una solución absoluta:
+\begin{align*}
+    y=&Ae^x\\
+    y(1)=&e^3\\
+    Ae^1=&e^3\\
+    A=&e^2\\
+    \therefore\;y=&e^2e^x\\
+    y=&e^{x+2}
+\end{align*}
+
+Para el curso, solo será necesario resolver ecuaciones diferenciales del primer orden. 
+
+A continuación se presentan tres métodos analíticos y uno numérico para la resolución de ecuaciones diferenciales. Al igual que con la integración, estos métodos se deben escoger de acuerdo a la forma de la ecuación. 
+
+\subsubsection{Separación de variables}
+
+Cuando una ecuación diferencial de la forma $\dydx=f(x,y)$ puede ser expresada como el producto de una función únicamente en $y$ y una función únicamente en $x$ (tal que $\dydx=g(x)h(y)$) entonces se puede aplicar una \textbf{separación de variables}. 
+
+De manera general el procedimiento es el siguiente:
+
+\begin{align*}
+    \dydx&=g(x)h(y)\\
+    \frac{dy}{h(y)}&=g(x)dx\\
+    \therefore\int\frac{dy}{h(y)}&=\int g(x)dx
+\end{align*}
+
+\textit{Ejemplo}. 1
+\begin{align*}
+    \dydx=&x(1+y)e^x\\
+    \dydx=&\underbrace{xe^x}_{g(x)}\underbrace{(1+y)}_{h(y)}\\
+    \frac{dy}{1+y}=&xe^xdx\\
+    \int\frac{dy}{1+y}=&\int xe^xdx \tag{(1)}
+\end{align*}
+Ahora hay que evaluar ambas integrales indefinidas.
+\begin{align*}
+    I_1=&\int\frac{dy}{1+y}=\ln{(1+y)}+A_1\\
+    I_2=&\int xe^xdx \quad\quad\quad \text{Integrando por partes}\\
+    u=&x\quad du=dx\quad dv=e^x \quad v=e^x\\
+    I_2=&xe^x-\int e^xdx\\
+    I_2=&xe^x-e^x+A_2=e^x(x-1)+A_2\\
+\end{align*}
+
+Se vuelve a la igualdad (1) para despejar $y$.
+\begin{align*}
+    \ln{(1+y)}+A_1=&e^x(x-1)+A_2\\
+    \ln{(1+y)}=&e^x(x-1)+A_3\\
+    1+y=&e^{e^x(x-1)+A_3}\\
+    y=&\underbrace{e^{A_3}}_{\text{constante}}e^{e^x(x-1)}-1\\
+    y=&Ae^{e^x(x-1)}-1
+\end{align*}
+
+En síntesis, el método de separación de variables consiste en:
+\begin{enumerate}
+    \item Aislar $\dydx$ a un lado de la ecuación
+    \item Separar funciones en $x$ e $y$
+    \item Reorganizar a la forma $\frac{dy}{h(y)}=g(x)dx$
+    \item Integrar de forma indefinida
+    \item Despejar $y$
+\end{enumerate}
+
+La (eq.1) de la sección anterior se puede resolver por separación de variables.
+
+\textit{Ejemplo}. 2
+\begin{align*}
+    \dydx&=y\\
+    \frac{dy}{y}&=dx\\
+    \int\frac{dy}{y}&=\int dx\\
+    \ln{y}+A_1&=x+A_2\\
+    y&=e^{x+A_3}\\
+    y&=\underbrace{e^{A_3}}_{\text{constante}}e^{x}\\
+    y&=Ae^x
+\end{align*}
+
+\subsubsection{Resolución de ecuaciones diferenciales homogéneas}
+
+Una ecuación diferencial de la forma $\dydx=f(\frac{y}{x})$ se denomina homogénea. Se puede aplicar la sustitución $v=\frac{y}{x}$. Luego, se procede a separar las variables $v$ y $x$.
+
+\textit{Ejemplo}. 3
+\begin{align*}
+    x\dydx-y&=x^2sin{x}\\
+    \dydx&=x\sin{x}+\frac{y}{x}\quad\quad\quad\text{Sea }v=\frac{y}{x}\implies \dydx=x\frac{dv}{dx}+v\\
+    x\frac{dv}{dx}+v&=x\sin{x}+v\\
+    \frac{dv}{dx}&=\sin{x}\\
+    \int dv&=\int\sin{x}dx\\
+    v+A_1&=-\cos{x}+A_2\\
+    y&=-x\cos{x}+Ax
+\end{align*}
+
+En síntesis, la resolución de ecuaciones diferenciales homogéneas consiste en:
+\begin{enumerate}
+    \item Aislar $\dydx$ a un lado de la ecuación
+    \item Aplicar una sustitución $\frac{y}{x}=v$ y $\dydx=x\frac{dv}{dx}+v$
+    \item Resolver por separación de variables $v$ y $x$
+    \item Volver a términos de $y$ y despejar.
+\end{enumerate}
+
+\subsubsection{Forma exacta, inexacta y factor de integración}
+\textbf{EDO's de la Forma Exacta}
+
+Una ecuación diferencial ordinaria de la forma exacta tiene la forma $\frac{d[yu(x)]}{dx}=v(x)$ y se puede resolver integrando a ambos lados en función a $x$.
+
+\begin{align*}
+    \frac{d[yu(x)]}{dx}&=v(x)\\
+    \int\frac{d[yu(x)]}{dx}dx&=\int v(x)dx\\
+    yu(x)&=\int v(x)dx
+\end{align*}
+
+\textit{Ejemplo}. 4
+\begin{align*}
+    x^2y'+2xy&=1\quad\quad\quad\text{Nota\footnotemark}\\
+    [x^2y]'&=1\\
+    \int[x^2y]'dx&=\int dx\\
+    x^2y&=x+A\\
+    y&=\frac{1}{x}+\frac{A}{x^2}
+\end{align*}
+\footnotetext{La notación $y'=\dydx$ es ampliamente usada por conveniencia.}
+
+EDO's de la la forma exacta son poco comunes. La mayoría de las EDO's se encuentran en la forma estándar.
+
+\textbf{Forma Estándar y Factor de Integración}.
+
+La forma estándar corresponde a $\dydx+yp(x)=q(x)$ y puede ser convertida a forma exacta multiplicando por el \textbf{factor de integración} ($I(x)=e^{\int p(x)dx}$ sin constante de integración).
+\begin{align*}
+    y'+yp(x)&=q(x)\implies I(x)=e^{\int p(x)dx}\\
+    y'I(x)+yp(x)I(x)&=q(x)I(x)
+\end{align*}
+Desde aquí, se puede simplificar, tratándola como una EDO de forma exacta.
+
+\textit{Ejemplo}. 5
+\begin{align*}
+    (x+1)y'-3y&=(x+1)^5\\
+    y'+y\underbrace{\frac{-3}{x+1}}_{p(x)}&=(x+1)^4\\
+    I(x)&=e^{\int\frac{-3}{x+1}dx}\\
+    I(x)&=e^{-3\ln{(x+1)}}\\
+    I(x)&=e^{\ln{(x+1)^{-3}}}\\
+    I(x)&=(x+1)^{-3}\\
+    y'(x+1)^{-3}+y(x+1)^{-3}\frac{-3}{x+1}&=(x+1)^4(x+1)^{-3}\\
+    \frac{y'}{(x+1)^{3}}+\frac{-3y}{(x+1)^{4}}&=(x+1)\\
+    \left[\frac{y}{(x+1)^{3}}\right]'&=x+1\\
+    \int\left[\frac{y}{(x+1)^{3}}\right]'dx&=\int x+1dx\\
+    \frac{y}{(x+1)^{3}}&=\frac{x^2}{2}+x+A\\
+    y&=(x+1)^{3}\left(\frac{x^2}{2}+x+A\right)\\
+\end{align*}
+
+Resumiendo, el método consiste en:
+\begin{enumerate}
+    \item Identificar la forma exacta $\frac{d[yu(x)]}{dx}=v(x)$
+    \item Si no es exacta, convertir la forma estándar $y'+yp(x)=q(x)$ a exacta multiplicando por el factor de integración $I(x)=e^{\int p(x)dx}$ y simplificando.
+    \item Integrar la forma exacta a ambos lados en función a $x$.
+    \item Despejar $y$.
+\end{enumerate}
+
+\subsubsection{Método de Euler}
+
+El método de Euler es un \textbf{método numérico} para solucionar EDO's. En un método numérico se valoriza la ecuación con los datos conocidos para aproximar puntos desconocidos.
+
+De manera general, se tiene una ecuación diferencial de la forma $\dydx=f(x,y)$. La derivada de $y$ se puede aproximar dando un valor a $h$ en $y'(x_n)\approx\frac{y(x_n+h)-y(x_n)}{h}\implies  y(x_n+h) \approx y(x_n)+hy'(x_n)$, o modificando la notación, $y_{n+1} =y_n+hy'(x_n)$. Esto se fundamente en aproximar la derivada como la pendiente entre dos puntos de la función; esto se denomina \textbf{linearización}. A menor sea el valor de $h$, mejor será la aproximación.
+
+Basándonos en esto, el método de Euler permite aproximar los puntos de una función con recursividad, partiendo de un punto conocido $y(x_0)=y_0$, y una ecuación diferencial $\dydx=f(x,y)$.
+\begin{enumerate}
+    \item Aislar $dydx$ a un lado de la ecuación
+    \item Construir una tabla con columnas para número de iteración $n$, $x_n$ (valores de x), $y_n$ (valor de y para cada x) e $y'(x_n)$ pendiente en cada punto. 
+    \item Rellenar $n$ con 0,1,2,3,...
+    \item Rellenar $x_0$ e $y_0$ con los valores iniciales dados
+    \item Rellenar $x_n$ con valores de $x$ incrementales en $h$, usando $x_{n+1}=x_n+h$.
+    \item Rellenar $y'(x_n)$ usando la ecuación diferencial dada $y'(x_n)=f(x_n,y_n)$.
+    \item Rellenar $y_n$ con $y_{n+1} =y_n+hy'(x_n)$ 
+\end{enumerate}
+
+\textit{Ejemplo}. 6
+
+\textit{Partiendo del punto $y(0)=1$ y la ecuación diferencial $y'=y+1$ genere 5 puntos de la función aplicando el método de Euler con $h=0.5$}
+\begin{align*}
+    x_0=0\quad y_0=1
+\end{align*}
+\begin{center}
+\begin{tabular}{c|c|c|c}
+    $n$ & $x_n=x_{n-1}+0.5$ & $y_n=y_{n-1}+hy'(x_{n-1})$ & $y'(x_n)=y_n+1$ \\
+     \hline
+    0 & 0 & 1 & 2 \\
+    1 & 0.5 & 2 & 3 \\
+    2 & 1 & 3.5 & 4.5 \\
+    3 & 1.5 & 7.25 & 8.5 \\
+    4 & 2 & 11.375 & 12.375 \\
+    5 & 2.5 & 17.5625 & 18.5625 \\
+\end{tabular}
+\end{center}
+
+En relación al método de Euler, se les pedirá construir esta tabla, y construir una gráfica.
+
+Un ejercicio interesante es resolver analíticamente la EDO, graficar la función resultante y compararla con la aproximación.
+
+\section{Ecuación logística}
+Es aquella de la forma
+$$\frac{dn}{dt}=kn(a-n)\quad\quad\text{para }a,k\in\R$$
+
+Se relaciona al crecimiento logístico, es decir, aquel relacionado a una capacidad máxima de carga, o a un punto donde se estanca la función (por ejemplo, para modelar el crecimiento de una población que una vez alcanza cierto tamaño, los recursos naturales no permiten un incremento poblacional mayor). Esta capacidad máxima de carga es $a$. 
+
+Para entender mejor la naturaleza de la ecuación logística, realizarán los siguientes ejercicios considerando la forma general que se entregó para la ecuación logística.
+\begin{enumerate}[1)]
+    \item ¿Qué pasa cuando $n$ toma el valor de $a$?¿Qué implica esto?
+    \item Sabiendo que $n$ es una función en $t$, resuleva la ecuación diferencial para encontrar $n(t)$.
+    \item ¿Cuál es el límite de $n(t)$ cuando $t$ tiende a infinito ($\lim_{t\to\infty}n(t)$)?¿Cómo se relaciona esto a su razonamiento en el item 1)?
+\end{enumerate}
+\section{Ejercicios}
+\begin{enumerate}[1)]
+    \item Realice los ejercicios 8F, 8G, 8H y 8I del libro de Oxford (se encentran entre las páginas 539 a a 549)
+\end{enumerate}
+\end{document}

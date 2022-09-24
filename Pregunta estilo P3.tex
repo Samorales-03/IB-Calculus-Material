@@ -1,0 +1,123 @@
+\documentclass[spanish,12pt]{article}
+
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{enumerate}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{indentfirst}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{tikz-feynman}
+\usepackage{physics}
+\usepackage{color}
+\renewcommand{\baselinestretch}{1.5}
+
+\newcommand{\dydx}{\frac{dy}{dx}}
+\newcommand{\ddx}{\frac{d}{dx}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand*\Eval[3]{\left.#1\right\rvert_{#2}^{#3}}
+
+\setlength{\parskip}{0.4cm}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\thesection}{1em}{}[{\titlerule[0.8pt]}]
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Control de ejemplo Prueba 3},
+}
+\fancyhead[l]{\fontsize{8}{12}\slshape\MakeUppercase{Control de ejemplo Prueba 3}}
+\fancyhead[R]{\slshape{Nombre:$\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad$}}
+\fancyfoot[c]{\thepage}
+\pgfplotsset{compat=1.17}
+\begin{document}
+	\begin{titlepage}
+	\begin{center}
+	\hspace{0pt}
+	\vfill
+	{\Large\textbf{{Control de ejemplo Prueba 3}}}
+	
+	\thispagestyle{empty}
+	\vfill
+	\end{center}
+	\end{titlepage}
+\newpage
+\section{Control: Pregunta estilo Prueba 3}
+\subsection{Introducción}
+\begin{itemize}
+    \item La prueba 3 equivale al 20$\%$ de su nota para Matemáticas AA HL.
+    \item Consiste en 2 preguntas de múltiples incisos y sub-incisos, con un total de 55 puntos.
+    \item Se permite el uso de calculadora y cuadernillo de formulas.
+    \item El mayor limitante es el tiempo, siendo una prueba extensa con una duración de 1 hora.
+    \item Se enfoca en pensamiento crítico, demostración y generalización.
+\end{itemize}
+ 
+ A continuación cito la guía del IB respecto al tema:
+ 
+ "\textit{Questions require extended responses involving sustained reasoning. Individual questions will develop from a single theme where the emphasis is on problem solving leading to a generalization or the interpretation of a context. Questions may be presented in the form of words, symbols, diagrams or tables, or combinations of these. [...] The emphasis is on problem solving.}"
+ 
+ El control a continuación consiste de una pregunta diseñada al estilo de las preguntas de la prueba 3. Contiene [40 puntos] y está hecho para ser resuelto en 1 hora.
+ \newpage
+ \section{Control}
+ Conteste todas las preguntas de forma ordenada en una hoja aparte. No se otorgará la máxima puntuación a una respuesta correcta no acompañada de procedimiento. Las respuestas deben estar sustentadas en un procedimiento y/o en explicaciones. Junto a los resultados obtenidos con la calculadora de pantalla gráfica, deberá reflejarse por escrito el procedimiento seguido para su obtención; por ejemplo si se utiliza un gráfico para ir una solución, se deberá dibujar aproximadamente el mismo como parte de la respuesta. Aún cuando la respuesta sea errónea, podrán otorgarse algunos. Si el método empleado es correcto. El puntaje de cada inciso de indica entre paréntesis rectos [x].
+ 
+ Tiene 1 hora para hacer la prueba. Una vez acabe el tiempo marque donde quedó. Puede continuar a partir de aquí sin restricción de tiempo 
+ 
+\boldsymbol{1.}
+
+En esta pregunta se analizará la relación entre la enésima derivada del producto de dos funciones y la expansión binomial. Sean $f$ y $g$ funciones en $x$, $(fg)^{(n)}$ será la enésima derivada de el producto de las funciones.
+
+Para el inciso $(a)$ asuma el siguiente caso específico:
+\begin{align*}
+    f(x)&=a_2x^2+a_1x+a_0\\
+    g(x)&=b_3x^3+b_2x^2+b_1x+b_0 && \text{donde las constantes } a_k, b_k\in\R\quad\wedge\quad a_2,b_3\neq0\\
+\end{align*}
+\begin{enumerate}[$a)$]
+    \item Encuentre el valor mínimo de $n$ para que:
+    \begin{enumerate}[i)]
+        \item $f^{(n)}(x)$ sea constante (independiente de $x$) [2]
+        \item $g^{(n)}(x)$ sea constante [2]
+        \item $(fg)^{(n)}$ sea constante [4]
+    \end{enumerate}
+    \item Asuma solo para este inciso que $f$ y $g$ son funciones polinómicas de grado $p$ y $q$ respectivamente. Encuentre el valor mínimo de $n$ para que $(fg)^{(n)}$ sea constante [4]
+    \item Considerando las funciones $f$ y $g$ arbitrarias.
+    \begin{enumerate}[i)]
+        \item Encuentre $(fg)^{(1)}$ [2]
+        \item Encuentre $(fg)^{(2)}$ y simplifíquelo lo máximo posible (3 términos) [3]
+        \item Encuentre $(fg)^{(3)}$ y simplifíquelo lo máximo posible (4 términos) [3]
+    \end{enumerate}
+    \item Desarrolle la potencia de binomio $(a+b)^n$ para:
+    \begin{enumerate}[i)]
+        \item $n=1$ [1]
+        \item $n=2$ [1]
+        \item $n=3$ [1]
+    \end{enumerate}
+    \item La identidad de Pascal establece lo siguiente
+    $${n\choose{k-1}}+{n\choose{k}}={{n+1}\choose{k}}\quad\quad \text{para }n,k\in\mathbb{N} \quad\quad\quad\quad \text{donde } {a\choose{b}}=\frac{a!}{b!(a-b!)}$$
+    Demuéstrelo [5]
+    \item El teorema del binomio establece lo siguiente:
+    $$(a+b)^n=\sum_{k=0}^n{n\choose{k}}a^kb^{n-k}$$
+    Demuéstrelo por inducción utilizando el resultado obtenido en $(e)$ [5]
+    \item Se sabe lo siguiente:
+    \begin{align*}
+        (fg)^{(4)}&=fg^{(4)}+4f^{(1)}g^{(3)}+6f^{(2)}g^{(2)}+4f^{(3)}g^{(1)}+f^{(4)}g\\
+        (fg)^{(5)}&=fg^{(5)}+5f^{(1)}g^{(4)}+10f^{(2)}g^{(3)}+10f^{(3)}g^{(2)}+5f^{(4)}g^{(1)}+f^{(5)}g
+    \end{align*}
+    A modo de hipótesis, proponga una expresión general para $(fg)^{(n)}$ [2]
+    \item Utilizando inducción matemática demuestre su hipótesis del inciso $(g)$. De ser válido, ayúdese de los resultados obtenidos en $(e)$ y $(f)$ [5]
+\end{enumerate}
+\end{document}

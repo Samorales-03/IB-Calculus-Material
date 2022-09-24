@@ -1,0 +1,212 @@
+\documentclass[spanish,12pt]{article}
+
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{enumerate}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{indentfirst}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{tikz-feynman}
+\usepackage{physics}
+\usepackage{color}
+\renewcommand{\baselinestretch}{1.5}
+
+\newcommand{\dydx}{\frac{dy}{dx}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand*\Eval[3]{\left.#1\right\rvert_{#2}^{#3}}
+
+\setlength{\parskip}{0.4cm}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\thesection}{1em}{}[{\titlerule[0.8pt]}]
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={IB Cálculo},
+}
+\fancyhead[l]{\fontsize{8}{12}\slshape\MakeUppercase{IB Cálculo}}
+\fancyhead[R]{\slshape{S.Morales y J. Pulido}}
+\fancyfoot[c]{\thepage}
+\pgfplotsset{compat=1.17}
+\begin{document}
+	\begin{titlepage}
+	\begin{center}
+	\hspace{0pt}
+	\vfill
+	{\Large\textbf{{IB Cálculo}}}
+	
+	\medskip
+	Clase 10: Sustitución como método de integración
+	
+	\medskip
+    Samuel Morales y Julio Pulido
+	
+	\thispagestyle{empty}
+	\vfill
+	\end{center}
+	\end{titlepage}
+\newpage
+\tableofcontents
+\newpage
+\section{Sustitución}
+\subsection{Definición}
+El método de sustitución (también conocido como sustitución por $u$) corresponde en emplear una variable auxiliar (generalmente nombrada $u$, de ahí el nombre) para simplificar una integral que no es integrable por inspección, a una sí lo sea. 
+
+\subsection{Sustitución en integración indefinida}
+\subsubsection{Funciones de la forma $f(ax+b)$}
+
+Este es probablemente el caso más simple de la substitución. Tomemos el ejemplo siguiente.
+
+\textit{Ejemplo.} 1
+\begin{align*}
+    I&=\int 2(3x+4)^6dx\\
+    I&=2\int (3x+4)^6dx
+\end{align*}
+Lo primero que hacemos es extraer la constante (2) de la integral. Ahora tenemos la integral de una función de la forma $f(ax+b)$ (donde $f(x)=x^6$). El paso a seguir sería realizar la sustitución, determinando que $u$ será el argumento de la función ($ax+b$), quedándonos así una forma simplificada $f(u)$.
+\begin{align*}
+    u&=3x+4 \quad du=3dx\\
+    I&=2\int \frac{u^6}{3}du\\
+    I&=\frac{2}{3}\int u^6du\\
+    I&=\frac{2}{3}\frac{u^7}{7}+C\\
+    I&=\frac{2u^7}{21}+C && \text{(en términos de u)}\\
+    I&=\frac{2(3x+4)^7}{21}+C && \text{(en términos de x)}
+\end{align*}
+\subsubsection{Integrales de la forma $\int f(g(x))g'(x)dx$ (regla de la cadena inversa)} 
+
+Este método se aplica en funciones compuestas como el inverso de la regla de la cadena. Este busca llevar un argumento no integralbe por inspección a la forma de una función simple después del cambio de variable, tal como se muestra a continuación:
+
+\begin{align*}
+    I&=\int f(g(x))g'(x)dx\\
+    &\text{Sea }u=g(x)\text{, entonces } du=g'(x)dx\\
+    I&=\int f(u)du\\
+    I&=F(u)+C && \text{(en términos de u)}\\
+    I&=F(g(x))+C && \text{(en términos de x)}
+\end{align*}
+Veamos esto a través de un ejemplo
+\textit{Ejemplo.} 2
+\begin{align*}
+    I&=\int (3x^2+4)(x^3+4x+7)^4dx
+\end{align*}
+Para determinar si la substitución es un método apropiado, hay qué examinar los exponentes. De la observación de los exponentes, se concluye que el primer término es la derivada del argumento del segundo término:
+\begin{align*}
+    I&=\int (\underbrace{3x^2+4}_{g'(x)})({\underbrace{x^3+4x+7}_{g(x)})}^4dx
+\end{align*}
+Sabiendo esto, establecemos la substitución por $u=x^3+4x+7$ y $du=3x^2+4dx$.
+\begin{align*}
+    I&=\int u^4du\\
+    I&=4u^3+C && \text{(en términos de u)}\\
+    I&=4(x^3+4x+7)^3+C && \text{(en términos de x)}
+\end{align*}
+
+Este procedimiento general puede ser útil para: (resolver ejemplos propuestos)
+\begin{itemize}
+    \item Funciones polinómicas (como el ejemplo. 2)
+    \item Funciones radicales (ejemplo 3. $\int 6x\sqrt{3x^2+3}dx$)
+    \item Funciones exponenciales (ejemplo 4. $\int (18x-3)e^{3x^2-x}dx$)
+    \item Funciones exponenciales (ejemplo 5. $\int (18x-3)e^{3x^2-x}dx$)
+    \item Funciones trigonométricas (ejemplo 6. $\int \cot(x)dx$)
+    \item Entre otras...
+\end{itemize}
+\subsubsection{Sustituciones trigonométricas (se empieza a poner feo...)}
+Al encontrarse con las siguientes formas, proceder con la substitución mostrada
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|cc|}
+     \toprule
+         Integral de la forma & Sustitución  \\
+    \midrule    
+        $\int\frac{1}{\sqrt{a^2-x^2}}dx$ &  $\frac{x}{a}=\sin{u}$\\
+        $\int\frac{1}{\sqrt{x^2-a^2}}dx$& $\frac{x}{a}=\sec{u}$\\
+        $\int\frac{1}{\sqrt{x^2+a^2}}dx$&$\frac{x}{a}=\tan{u}$\\
+    \bottomrule
+    \end{tabular}
+    \caption{Substituciones trigonométricas}
+    \label{tab:my_label}
+\end{table}
+Veamos el primer caso. Consideremos $a$ como una constante.
+
+\textit{Ejemplo.} 7
+\begin{align*}
+    I&=\int\frac{1}{\sqrt{a^2-x^2}}dx\\
+    I&=\int\frac{1}{a\sqrt{1-\frac{x^2}{a^2}}}dx\\
+    &\frac{x}{a}=\sin{u}\\
+    &\frac{dx}{a}=\cos{u}du\\
+    I&=\int\frac{a\cos{u}du}{a\sqrt{(\underbrace{1-\sin^2{u}}_{\cos^2{u}})}}\\
+    I&=\int du\\
+    I&=u+C\\
+    I&=\arcsin{\frac{x}{a}}+C
+\end{align*}
+
+Integre las dos formas restantes del cuadro 1.
+
+\subsubsection{Pero..... A veces no hay un esquema fijo que seguir}
+En varios casos, más que un método claramente reglamentado, la substitución es una herramienta versátil.
+
+\textit{Ejemplo.} 8
+\begin{align*}
+    I&=\int x\sqrt{x-5}dx\\
+    &u=x-5\\
+    &du=dx\\
+    I&=\int (u+5)\sqrt{u}\;du\\
+    I&=\int u^\frac{3}{2}+5u^\frac{1}{2}\;du\\
+    I&=\frac{u^\frac{5}{2}}{\frac{5}{2}}+\frac{5u^\frac{3}{2}}{\frac{3}{2}}+C\\
+    I&=\frac{(x-5)^\frac{5}{2}}{\frac{5}{2}}+\frac{5(x-5)^\frac{3}{2}}{\frac{3}{2}}+C\\
+\end{align*}
+
+En conclusión, aunque existen casos específicos, conviene tener la mente abierta a otros razonamientos menos directos a la hora de usar la substitución
+
+\section{Ejercicios}
+\begin{enumerate}[1)]
+    \item Para más práctica, realizar los ejercicios 1 a 20 de la sección 7H (pág. 499-500 del libro de Oxford.)
+\end{enumerate}
+\section{Sustitución Definida}
+Para aplicar el método de sustitución en integración definida se realiza exactamente lo mismo, con un pequeño ajuste.
+
+El ajuste a aplicar depende de si se quiere valorizar en $u$ o en $x$.
+
+\textbf{Caso. 1: Cambio de límites de integración}
+Tomemos el siguiente ejemplo.
+\begin{align*}
+    I&=\int_2^5x(x+1)^3dx\\
+    &u=x+1\\
+    &du=dx
+\end{align*}
+Al realizar la sustitución, la integral nos queda en función a $u$, entonces hay que modificar los límites. Llamémosle al límite inferior $a$ y al superior $b$
+\begin{align*}
+    I&=\int_a^b(u-1)u^5dx\\
+    &a=u(2)=3\\
+    &b=u(5)=6\\
+    I&=\int_3^6(u-1)u^5dx\\
+    I&=\int_3^6u^6-u^5dx\\
+    I&=\Eval{\frac{u^7}{7}-\frac{u^6}{6}}{3}{6}
+\end{align*}
+
+\textbf{Caso. 2: despeje en x}
+Para este caso realizaremos el procedimiento normalmente, sin cambiar los límites de integración. 
+\begin{align*}
+    I&=\int_2^5x(x+1)^5dx\\
+    &u=x+1\\
+    &du=dx\\
+    I&=\int_2^5(u-1)u^5dx\\
+    I&=\int_2^5u^6-u^5dx
+\end{align*}
+Y en el paso final, se re-introduce la variable en $x$
+\begin{align*}
+    I&=\Eval{\frac{(x+1)^7}{7}-\frac{(x+1)^6}{6}}{2}{5}
+\end{align*}
+\end{document}

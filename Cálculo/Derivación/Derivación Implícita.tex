@@ -1,0 +1,164 @@
+\documentclass[spanish,12pt]{article}
+
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{enumerate}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{indentfirst}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{tikz-feynman}
+\usepackage{physics}
+\usepackage{color}
+\renewcommand{\baselinestretch}{1.5}
+\newcommand{\dydx}{\frac{dy}{dx}}
+\newcommand{\R}{\mathbb{R}}
+\setlength{\parskip}{0.4cm}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\thesection}{1em}{}[{\titlerule[0.8pt]}]
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={IB Cálculo},
+}
+\fancyhead[l]{\fontsize{8}{12}\slshape\MakeUppercase{IB Cálculo}}
+\fancyhead[R]{\slshape{S.Morales y J. Pulido}}
+\fancyfoot[c]{\thepage}
+\pgfplotsset{compat=1.17}
+\begin{document}
+	\begin{titlepage}
+	\begin{center}
+	\hspace{0pt}
+	\vfill
+	{\Large\textbf{{IB Cálculo}}}
+	
+	\medskip
+	Clase 6: Derivación Implícita
+	
+	\medskip
+    Samuel Morales y Julio Pulido
+	
+	\thispagestyle{empty}
+	\vfill
+	\end{center}
+	\end{titlepage}
+\newpage
+\tableofcontents
+\newpage
+\section{Derivación implícita}
+
+Nótese que para una función $f: \mathbb{R}\rightarrow \mathbb{R}$. $f'(x)=\frac{dy}{dx}=y'$
+
+Entendamos lo que es la derivación implicita a través de un ejemplo.
+
+Dado que conocemos lo siguiente:
+\begin{align*}
+    f(x)&=e^x\\
+    f'(x)&=e^x
+\end{align*}
+
+Calculemos la siguiente derivada con respecto a $x$
+
+\begin{align*}
+    h(x)=\ln{x}
+\end{align*}
+
+Simplificando un poco la notación.
+\begin{align*}
+    y&=\ln{x}\\
+    e^y&=x
+\end{align*}
+Ahora, entendiendo que $y$ es una variable que depende de $x$, podemos derivar usando la regla de la cadena.
+
+\begin{align*}
+    e^y y'&=1\\
+    y'&=\frac{1}{e^y}=\frac{1}{x}
+\end{align*}
+\hfill $\square$
+
+
+De manera general, dado el siguiente sistema
+
+
+$$y&=f^{-1}(x)$$
+
+
+Se puede calcular la derivada de la inversa de esta función de la siguiente forma
+
+\begin{align*}
+    y&=f^{-1}(x)\\
+    f(y)&=x\\
+    f'(y)y'&=1\\
+    y'&=\frac{1}{f'(y)}
+\end{align*}
+
+La derivación implícita es una aplicación de la regla de la cadena para poder derivar en función a $x$ una función que está dada en términos dependientes de $y$.
+
+
+$$\frac{d}{dx}g(y)=g'(y)\frac{dy}{dx}=g'(y)y'$$
+
+
+Desde aquí se puede obtener $y'$ despejando.
+
+Veamoslo en otro ejemplo:
+
+La ecuación de un círculo de radio $a$ está dada por
+
+$$a^2=x^2+y^2$$
+
+Para hallar la derivada de $y$ en función de $x$ en un punto usamos derivación implícita
+
+\begin{align*}
+    0&=2x+2yy'\\
+    y'&=-\frac{x}{y}
+\end{align*}
+
+Ahora, para escribir la derivada como una función independiente de $y$ podemos despejar $y$ en la función inicial y sustituir
+
+\begin{align*}
+    a^2&=x^2+y^2\\
+    y&=\sqrt{a^2-x^2}\\
+    y'&=-\frac{x}{y}\\
+    y'&=-\frac{x}{\sqrt{a^2-x^2}}
+\end{align*}
+
+Esta herramienta es especialmente útil para funciones inversas y para casos donde conozco el valor de $y$ y el despeje de la variable implique mayor complejidad.
+
+\section{Ejercicios}
+\begin{enumerate}[1)]
+    \item Encuentre $\frac{dy}{dx}$ para las siguientes funciones (I)
+    \begin{enumerate}
+        \item $2y^2-3x^2=1$
+        \item $(x+y)^2=2-3y$
+        \item $x=\sqrt{2x^2-6y^3}$
+        \item $2x^2=\frac{x+y}{x-y}$
+    \end{enumerate}
+    \item Encuentre la tangente y la normal a las siguientes curvas en el punto (1,1) (II)
+    \begin{enumerate}
+        \item $\frac{1}{x^3}+\frac{1}{y^3}=2$
+        \item $\frac{1}{x+1}+\frac{1}{y+1}=1$
+    \end{enumerate}
+    \item Encuentre las coordenadas de los puntos donde la gradiente es 0 para $x^2+y^2=6x+8y$ (II)
+    \item Dada la curva $x+y=x^2-2xy-y^2$:
+    \begin{enumerate}
+        \item Encuentre $\dydx$ (I)
+        \item Muestre que $1-\dydx=\frac{2}{2x-2y+1}$ (II)
+        \item Muestre que $\frac{d^2y}{dx^2}=\left(1-\dydx\right)$ (II, difícil)
+    \end{enumerate}
+\end{enumerate}
+\end{document}

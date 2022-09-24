@@ -1,0 +1,229 @@
+\documentclass[spanish,12pt]{article}
+
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{indentfirst}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{tikz-feynman}
+\usepackage{physics}
+\usepackage{color}
+\renewcommand{\baselinestretch}{1.5}
+\setlength{\parskip}{0.4cm}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\thesection}{1em}{}[{\titlerule[0.8pt]}]
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={IB Cálculo},
+}
+\fancyhead[l]{\fontsize{8}{12}\slshape\MakeUppercase{IB Cálculo}}
+\fancyhead[R]{\slshape{S.Morales y J. Pulido}}
+\fancyfoot[c]{\thepage}
+\pgfplotsset{compat=1.17}
+\begin{document}
+	\begin{titlepage}
+	\begin{center}
+	\hspace{0pt}
+	\vfill
+	{\Large\textbf{{IB Cálculo}}}
+	
+	\medskip
+	Clase 1:Límites
+	
+	\medskip
+    Samuel Morales y Julio Pulido
+	
+	\thispagestyle{empty}
+	\vfill
+	\end{center}
+	\end{titlepage}
+\newpage
+\tableofcontents
+\newpage
+\section{Temas}
+\begin{itemize}
+    \item Definición
+    \item Función continua en un punto y en un intervalo
+    \item numero específico
+    \item no converge en 0
+    \item converge en infty
+    \item no converge a infinito
+    \item Indeterminado a infinito
+\end{itemize}
+\section{Ejemplos}
+Es hacia donde tiende una función.
+
+\begin{align*}
+    \lim_{n\to x}f(n)=L \iff \lim_{n\to x^+}f(n)=\lim_{n\to x^-}f(n)=L
+\end{align*}
+\textit{Ejemplo.}
+\begin{align*}
+    \lim_{x\to 2} x^2=4\\
+    \lim_{x\to 2^+} x^2=\lim_{x\to2^-}x^2=4
+\end{align*}
+\begin{figure}[h]
+		\begin{center}
+	\begin{tikzpicture}
+		\begin{axis}[
+			xlabel={$x$},
+			ylabel={$f(x)$},
+			xmin=0, xmax=5,
+			ymin=0, ymax=10,
+			legend pos=north west,
+			ymajorgrids=true,
+			axis lines=left,
+			scaled y ticks=false,
+			]
+			
+			\addplot[
+			color=blue,
+			domain=0:5
+			]
+		{x^2};
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Gráfico de $x^2$}
+	\end{center}
+	\end{figure}
+	
+\hfill $\square$
+\newpage
+\textit{Ejemplo}. ¿Cuál es el límite cuando $x$ tiende a 0 de $1\over x$?
+    
+    \begin{figure}[h!]
+		\begin{center}
+	\begin{tikzpicture}
+		\begin{axis}[
+			xlabel={$x$},
+			ylabel={$f(x)$},
+			xmin=-5, xmax=5,
+			ymin=-10, ymax=10,
+			legend pos=north west,
+			ymajorgrids=true,
+			axis lines=center,
+			scaled y ticks=false,
+			]
+			
+			\addplot[samples=100,
+			color=blue,
+			domain=-5:-0.001
+			]
+		{1/x};
+		\addplot[samples=100,
+			color=blue,
+			domain=0.001:5
+			]
+		{1/x};
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Gráfico de $\frac{1}{x}$}
+	\end{center}
+	\end{figure}
+	
+	
+	
+	\textit{Ejemplo}. ¿Cuál es el límite cuando $x$ tiende a infinito de $e^{-x}$?
+    
+    \begin{figure}[h!]
+		\begin{center}
+	\begin{tikzpicture}
+		\begin{axis}[
+			xlabel={$x$},
+			ylabel={$f(x)$},
+			xmin=0, xmax=15,
+			ymin=0, ymax=1,
+			legend pos=north west,
+			ymajorgrids=true,
+			axis lines=center,
+			scaled y ticks=false,
+			]
+			
+			\addplot[
+			color=blue,
+			domain=0:15
+			]
+		{e^(-x)};
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Gráfico de $e^{-x}$}
+	\end{center}
+	\end{figure}
+	$$\lim_{x\to\infty}e^{-x}=0$$
+\textit{Ejemplo}. ¿Cuál es el límite cuando $x$ tiende a menos infinito ($-\infty$) de $f(x)=x$?
+    
+    \begin{figure}[h!]
+		\begin{center}
+	\begin{tikzpicture}
+		\begin{axis}[
+			xlabel={$x$},
+			ylabel={$f(x)$},
+			xmin=-15, xmax=15,
+			ymin=-15, ymax=15,
+			legend pos=north west,
+			ymajorgrids=true,
+			axis lines=center,
+			scaled y ticks=false,
+			]
+			
+			\addplot[
+			color=blue,
+			domain=-15:15
+			]
+		{x};
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Gráfico de $x$}
+	\end{center}
+	\end{figure}
+	$$\lim_{x\to-\infty}x=-\infty$$	
+	\textit{Ejemplo}. ¿Cuál es el límite cuando $x$ tiende a infinito de $f(x)=\sin{x}$?
+    
+    \begin{figure}[h!]
+		\begin{center}
+	\begin{tikzpicture}
+\begin{axis}
+[axis lines=center,]
+\addplot[samples=500,domain=-4*pi:4*pi,color=blue,]{sin(deg(x))};
+\end{axis}
+\end{tikzpicture}
+	\caption{Gráfico de $\sin{x}$}
+	\end{center}
+	\end{figure}
+	$$\lim_{x\to\infty}\sin{x}=L\quad\quad\text{donde}\quad\quad L\in [-1,1]$$
+	(indeterminado)
+	\newpage
+\section{Ejercicios}
+Determine si los siguientes límites convergen. Si es así, determine su valor.
+\begin{align*}
+&\lim_{x\to-2}\frac{x^2-4}{x+2}\\
+&\lim_{x\to2}\lfloor x\rfloor\\
+&\lim_{x\to\infty} \frac{x+1}{x+10^{1000000}}
+\end{align*}
+$$\lim_{x\to2} \begin{cases} 
+      x-3 & x<2 \\
+    x+1 & x\geq2
+   \end{cases}
+$$
+
+\textit{Desafio}. Pruebe que 
+\begin{align*}
+    \sum_{n=0}^\infty ax^n=\frac{a}{1-x} \quad\quad \forall \abs{x}<1
+\end{align*}
+\end{document}
